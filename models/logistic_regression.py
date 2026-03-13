@@ -1,4 +1,7 @@
 # Import preprocessed data
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from preprocessing import X_train_scaled, X_test_scaled, y_train, y_test
 
 from sklearn.linear_model import LogisticRegression

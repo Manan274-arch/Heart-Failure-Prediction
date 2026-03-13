@@ -1,3 +1,6 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from preprocessing import X_train_scaled, X_test_scaled, y_train, y_test
 
 import tensorflow as tf

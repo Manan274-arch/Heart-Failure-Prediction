@@ -1,3 +1,6 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from preprocessing import X_train, X_test, y_train, y_test
 
 from sklearn.ensemble import RandomForestClassifier
@@ -13,20 +16,21 @@ print("===== Random Forest =====")
 
 # Initialize model
 model = RandomForestClassifier(
-    n_estimators=300,          # number of trees
+    n_estimators=500,          # number of trees
     max_depth=6,               # prevent over-complex trees
     min_samples_leaf=3,        # stabilize leaves
     class_weight="balanced",   # handle imbalance
     random_state=42,            
 )
 
+
 # Train
 model.fit(X_train, y_train)
 
 # Predict
-y_pred = model.predict(X_test)
 y_prob = model.predict_proba(X_test)[:, 1]
-
+threshold = 0.30
+y_pred = (y_prob >= threshold).astype(int)
 # Metrics
 accuracy = accuracy_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred)
