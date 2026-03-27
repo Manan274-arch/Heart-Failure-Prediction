@@ -18,8 +18,6 @@ from sklearn.metrics import (
     roc_auc_score
 )
 
-print("===== Neural Network (TensorFlow/Keras) =====")
-
 # Define model
 model = Sequential([
     Dense(32, activation='relu', input_shape=(X_train_scaled.shape[1],)),
@@ -78,11 +76,14 @@ recall = recall_score(y_test, y_pred)
 f1 = f1_score(y_test, y_pred)
 roc_auc = roc_auc_score(y_test, y_pred_prob)
 
-print("Accuracy:", accuracy)
-print("Precision:", precision)
-print("Recall:", recall)
-print("F1 Score:", f1)
-print("ROC-AUC:", roc_auc)
+
+print("===== Neural Network (TensorFlow/Keras) =====")
+
+print("Accuracy:", round(accuracy,2))
+print("Precision:", round(precision,2))
+print("Recall:", round(recall,2))
+print("F1 Score:", round(f1,2))
+print("ROC-AUC:", round(roc_auc,2))
 
 print("\nConfusion Matrix:")
 print(confusion_matrix(y_test, y_pred))
